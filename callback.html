@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Connecting to TikTok</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<header><img src="icon.png" alt="Hit by Hit logo"><h1>Connecting…</h1></header>
+<p id="msg">Returning to Hit by Hit Uploader on your computer.</p>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var code = q.get("code"), state = q.get("state"), err = q.get("error");
+  var msg = document.getElementById("msg");
+  if (err) { msg.textContent = "TikTok returned an error: " + err; return; }
+  if (!code) { msg.textContent = "No authorization code was received."; return; }
+  var target = "http://localhost:8765/callback?code=" + encodeURIComponent(code) +
+               "&state=" + encodeURIComponent(state || "");
+  location.replace(target);
+})();
+</script>
+</main>
+</body>
+</html>
