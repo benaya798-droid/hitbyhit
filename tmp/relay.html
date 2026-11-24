@@ -1,9 +1,0 @@
-<!doctype html>
-<meta charset="utf-8">
-<title>relay</title>
-<script>
-fetch("v2.mp4").then(function (r) { return r.blob(); }).then(function (b) {
-  var t = window.opener || window.parent;
-  t.postMessage({ kind: "hbh-video", blob: b }, "https://www.tiktok.com");
-});
-</script>
